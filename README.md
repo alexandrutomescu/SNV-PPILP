@@ -59,7 +59,7 @@ A directory sample/ containing GATK's Unified Genotyper .vcf file from
 6 samples is included with this distribution. This is how to run the
 tool on this sample:
 
-python SNV-PPILP.py -ilp ./lp_solve_5.5.2.0_exe_ux64/ -o ./sample/6samples.corrected.csv -i ./sample/6samples.vcf 
+    python SNV-PPILP.py -ilp ./lp_solve_5.5.2.0_exe_ux64/ -o ./sample/6samples.corrected.csv -i ./sample/6samples.vcf 
 
 This command assumes that lp_solve is in the directory called
 lp_solve_5.5.2.0_exe_ux64/ located in the current folder. (The 
