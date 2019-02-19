@@ -1,7 +1,7 @@
 # SNV-PPILP
 SNV-PPILP: Refined SNV calling for tumor data using perfect phylogenies and ILP (version 1.2)
 
-# Running SNV-PPILP
+## Running SNV-PPILP
 
 The command to run SNV-PPILP is:
 
@@ -22,11 +22,11 @@ Optional arguments:
     -ilp LPSOLVEPATH  path to the directory containing lp_solve (this argument
                       is not needed if lp_solve is in the PATH variable)
     -f F              an SNV non detected by GATK in one sample gets weight =
-                    (the average quality score of that SNV over all samples) -
-                    (sqrt(100/F)) * (the standard deviation of that SNV over
-                    all samples) [default=50]
+                      (the average quality score of that SNV over all samples) -
+                      (sqrt(100/F)) * (the standard deviation of that SNV over
+                      all samples) [default=50]
 
-# Input and output
+## Input and output
 
 
 SNV-PPILP takes as input .vcf file produced by GATK's
@@ -37,7 +37,7 @@ the list of CHROM names and POS ID's *ONLY* of the SNVs present in that
 sample. SNV-PPILP does not report indels.
 
 
-# Requirements
+## Requirements
 
 
 SNV-PPILP uses the free ILP solver called 'lp_solve'. This is included 
@@ -53,7 +53,7 @@ output file).
 Note: lp_solve may already be installed on your system. You can check
 this by simply trying to run: lp_solve -h
 
-# Example usage   
+## Example usage   
 
 A directory sample/ containing GATK's Unified Genotyper .vcf file from
 6 samples is included with this distribution. This is how to run the
@@ -72,7 +72,7 @@ the parameter -ilp.
 
 The output is the file ./sample/6samples.corrected.csv.
 
-# Contact         
+## Contact         
 
 https://www.cs.helsinki.fi/gsa/SNV-PPILP/
 
