@@ -72,8 +72,12 @@ the parameter -ilp.
 
 The output is the file ./sample/6samples.corrected.csv.
 
-## Contact         
+## Citation and contact         
+
+If you use SNV-PPILP, please cite
+
+Karen E. van Rens, Veli Mäkinen, Alexandru I. Tomescu, SNV-PPILP: Refined SNV calling using perfect phylogenies and ILP, Bioinformatics, Volume 31, Issue 7, 1 April 2015, Pages 1133–1135, DOI: [10.1093/bioinformatics/btu755](https://doi.org/10.1093/bioinformatics/btu755)
+
 
 https://www.cs.helsinki.fi/gsa/SNV-PPILP/
-
 alexandru.tomescu@helsinki.fi
