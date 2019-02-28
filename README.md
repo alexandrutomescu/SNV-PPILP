@@ -30,7 +30,6 @@ Optional arguments:
 
 ## Input and output
 
-
 SNV-PPILP takes as input .vcf file produced by GATK's
 Unified Genotyper run in multi-sample mode.
 
@@ -40,7 +39,6 @@ sample. SNV-PPILP does not report indels.
 
 
 ## Requirements
-
 
 SNV-PPILP uses the free ILP solver called 'lp_solve'. This is included 
 with SNV-PPILP (for Linux, OS X and Windows), and alternatively can be 
@@ -73,6 +71,12 @@ it is already in the PATH variable, in which case you can skip
 the parameter -ilp.
 
 The output is the file ./sample/6samples.corrected.csv.
+
+## HaplotypeCaller
+
+If your .vcf file is the output of GATK's HaplotypeCaller, then set the flag **-hc** when running SNV-PPILP. For a test run, try running SNC-PPILP the sample file ./sample/haplotypecaller.vcf, as follows
+
+    python SNV-PPILP.py -hc -ilp ./lp_solve_5.5.2.0_exe_osx32/ -o ./sample/haplotype.corrected.csv -i ./sample/haplotypecaller.vcf
 
 ## Acknowledgements
 
