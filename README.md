@@ -18,13 +18,15 @@ Required arguments:
 
 Optional arguments:
 
-    -h, --help        show this help message and exit
-    -ilp LPSOLVEPATH  path to the directory containing lp_solve (this argument
+    -h, --help        Show this help message and exit
+    -ilp LPSOLVEPATH  Path to the directory containing lp_solve (this argument
                       is not needed if lp_solve is in the PATH variable)
-    -f F              an SNV non detected by GATK in one sample gets weight =
+    -f F              An SNV non detected by GATK in one sample gets weight =
                       (the average quality score of that SNV over all samples) -
                       (sqrt(100/F)) * (the standard deviation of that SNV over
                       all samples) [default=50]
+    -hc               Set this flag if the vcf file is the output of GATK's
+                      HaplotypeCaller
 
 ## Input and output
 
@@ -71,6 +73,10 @@ it is already in the PATH variable, in which case you can skip
 the parameter -ilp.
 
 The output is the file ./sample/6samples.corrected.csv.
+
+## Acknowledgements
+
+Thanks to Harald Detering (University of Vigo, Spain) for writing the support for HaplotypeCaller and providing the sample file samples/haplotypecaller.vcf.
 
 ## Citation and contact         
 
