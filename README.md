@@ -9,7 +9,7 @@ The command to run SNV-PPILP is:
 
 Usage: 
 
-    SNV-PPILP.py [-h] -i VCF -o OUTPUTFILE [-ilp LPSOLVEPATH] [-f F]
+    SNV-PPILP.py [-h] -i VCF -o OUTPUTFILE [-ilp LPSOLVEPATH] [-f F] [-hc]
 
 Required arguments:
     
