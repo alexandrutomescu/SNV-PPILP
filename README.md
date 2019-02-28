@@ -1,5 +1,5 @@
 # SNV-PPILP
-SNV-PPILP: Refined SNV calling for tumor data using perfect phylogenies and ILP (version 1.2)
+SNV-PPILP: Refined SNV calling for tumor data using perfect phylogenies and ILP (version 1.3)
 
 ## Running SNV-PPILP
 
