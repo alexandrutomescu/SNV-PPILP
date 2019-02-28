@@ -32,8 +32,7 @@ def main():
     #parser.add_argument("-p", dest="prefix", help="name of prefix", default="")
     parser.add_argument("-ilp", dest="lpSolvePath", help="path to the directory containing lp_solve (this argument is not needed if lp_solve is in the PATH variable)", default="")
     parser.add_argument("-f", dest="f", help="an SNV non detected by GATK in one sample gets weight = (the average quality score of that SNV over all samples) - (sqrt(100/F)) * (the standard deviation of that SNV over all samples) [default=50]", default="50")
-    
-
+    parser.add_argument("-hc", dest="hcFlag", help="", action='store_true', default=False)
 
 
     # get input parameters
@@ -43,6 +42,7 @@ def main():
     output = ""
     outputFile = args.outputFile
     lpPath = args.lpSolvePath
+    hcFlag = args.hcFlag
 
     nSamples = 0
     sampleNames = []
@@ -67,7 +67,7 @@ def main():
     snpQual = defaultdict(list)
     # for every file; find mutations and qualities
     for idx in range(0,nSamples):    
-        foundMutations, foundQual = getVCF(gatkFile,idx+1)
+        foundMutations, foundQual = getVCF(gatkFile, hcFlag, idx+1)
         positiondic[idx] = foundMutations
         allMutations = list(set(allMutations + foundMutations))
         allQS = list(allQS + foundQual)
@@ -127,10 +127,13 @@ def main():
             if changedColumns:
                 if SNP in tempSet1:
                     if changedColumns[SNP][1][count] == 1:
-                        sn.write(", (" + SNP[0] + ":" + SNP[1] +")")
+                        sn.write(", (" + SNP[0] + ":" + SNP[1] + ")")
             else:
                 if SNP in tempSet2:
-                    sn.write(", " + SNP)
+                    if hcFlag:
+                        sn.write(", (" + SNP[0] + ":" + SNP[1] + ")")
+                    else:
+                        sn.write(", " + SNP)
         count += 1
         sn.write("\n")
     sn.close()
@@ -148,7 +151,7 @@ def main():
 ####################### main ##################################
 ####################### getVCF ################################  
 
-def getVCF(gatkFile, idx):	
+def getVCF(gatkFile, hcFlag, idx):	
     foundMutations = []
     foundQual = []
     
@@ -169,16 +172,24 @@ def getVCF(gatkFile, idx):
 
             if vcfline.startswith("#") == False:
                 cells = vcfline.split("\t")
-                if cells[8 + idx][:3] == "1/1":# or cells[8 + idx][:3] == "0/1":
+                condition1 = cells[8 + idx][:3] == "1/1"
+                if hcFlag:
+                    condition1 = (cells[8 + idx][:3] == "1/1" or cells[8 + idx][:3] == "0/1")
+                if condition1:
                     foundMutations.append((cells[0],cells[1]))
                     #qual = float(cells[8 + idx].split(":")[4].split(",")[0])
                     qual = float(cells[8 + idx].split(":")[3])
                     qualValues[(idx,(cells[0],cells[1]))] = qual
                     foundQual.append(qual)
+
+
                 if cells[8 + idx][:3] == "0/0":
-                    #qual = float(cells[8 + idx].split(":")[4].split(",")[2])
-                    qual = float(cells[8 + idx].split(":")[3])
-                    qualValues[(idx,(cells[0],cells[1]))] = float(cells[8 + idx].split(":")[4].split(",")[2])
+                    qual = 0
+                    if hcFlag:
+                        qual = float(cells[8 + idx].split(":")[3])
+                    else:
+                        qual = float(cells[8 + idx].split(":")[4].split(",")[2])                    
+                    qualValues[(idx,(cells[0],cells[1]))] = qual
                 if cells[8 + idx][:3] == "0/1" and False:
                     #qual = max(float(cells[8 + idx].split(":")[4].split(",")[0]), float(cells[8 + idx].split(":")[4].split(",")[2]))
                     qual = float(cells[8 + idx].split(":")[3])
@@ -358,7 +369,7 @@ def addToTable(output, c1, c2, w1, nr, w2, matrixdic, snpQual, v, lpPath, nSampl
         # if there are no conflicts
         c3 = c2
         w3 = w2
-        changedColumns = []
+        changedColumns = {}
 
     return changedColumns
 
