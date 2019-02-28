@@ -31,7 +31,7 @@ Optional arguments:
 ## Input and output
 
 SNV-PPILP takes as input .vcf file produced by GATK's
-Unified Genotyper run in multi-sample mode.
+Unified Genotyper run in multi-sample mode. If you use GATK's HaplotypeCaller, you need to add the **-hc** flag when running. See the section **HaplotypeCaller** below.
 
 The output is a unique file in .csv format containing, for each sample,
 the list of CHROM names and POS ID's *ONLY* of the SNVs present in that 
@@ -78,9 +78,7 @@ If your .vcf file is the output of GATK's HaplotypeCaller, then set the flag **-
 
     python SNV-PPILP.py -hc -ilp ./lp_solve_5.5.2.0_exe_osx32/ -o ./sample/haplotype.corrected.csv -i ./sample/haplotypecaller.vcf
 
-## Acknowledgements
-
-Thanks to Harald Detering (University of Vigo, Spain) for writing the support for HaplotypeCaller and providing the sample file samples/haplotypecaller.vcf.
+Many thanks to Harald Detering (University of Vigo, Spain) for raising this issue, for patching the Python code to support HaplotypeCaller, and for providing the sample file samples/haplotypecaller.vcf.
 
 ## Citation and contact         
 
