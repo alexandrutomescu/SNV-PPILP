@@ -27,12 +27,12 @@ def main():
 
     group = parser.add_argument_group("required arguments")
     group.add_argument("-i", dest="vcf", help="GATK's multi-sample .vcf file", required=True)
-    group.add_argument("-o", dest="outputFile", help="output file", required=True)
+    group.add_argument("-o", dest="outputFile", help="Output file", required=True)
 
     #parser.add_argument("-p", dest="prefix", help="name of prefix", default="")
-    parser.add_argument("-ilp", dest="lpSolvePath", help="path to the directory containing lp_solve (this argument is not needed if lp_solve is in the PATH variable)", default="")
-    parser.add_argument("-f", dest="f", help="an SNV non detected by GATK in one sample gets weight = (the average quality score of that SNV over all samples) - (sqrt(100/F)) * (the standard deviation of that SNV over all samples) [default=50]", default="50")
-    parser.add_argument("-hc", dest="hcFlag", help="", action='store_true', default=False)
+    parser.add_argument("-ilp", dest="lpSolvePath", help="Path to the directory containing lp_solve (this argument is not needed if lp_solve is in the PATH variable)", default="")
+    parser.add_argument("-f", dest="f", help="An SNV non detected by GATK in one sample gets weight = (the average quality score of that SNV over all samples) - (sqrt(100/F)) * (the standard deviation of that SNV over all samples) [default=50]", default="50")
+    parser.add_argument("-hc", dest="hcFlag", help="Set this flag if the vcf file is the output of GATK's HaplotypeCaller", action='store_true', default=False)
 
 
     # get input parameters
