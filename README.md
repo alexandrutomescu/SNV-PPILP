@@ -78,7 +78,7 @@ If your .vcf file is the output of GATK's HaplotypeCaller, then set the flag **-
 
     python SNV-PPILP.py -hc -ilp ./lp_solve_5.5.2.0_exe_osx32/ -o ./sample/haplotype.corrected.csv -i ./sample/haplotypecaller.vcf
 
-Many thanks to Harald Detering (University of Vigo, Spain) for raising this issue, for patching the Python code to support HaplotypeCaller, and for providing the sample file samples/haplotypecaller.vcf.
+Many thanks to Harald Detering (University of Vigo, Spain) for raising this issue, for patching the Python code to support HaplotypeCaller, and for providing the sample file ./samples/haplotypecaller.vcf.
 
 ## Citation and contact         
 
